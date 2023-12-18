@@ -56,8 +56,14 @@ while running:
     if left and deleteMode:
 
         position = pygame.mouse.get_pos()
+
         node = nearestNode(position, nodes)
+        
         if node is not None:
+            nodePosition = node.getPosition()
+            # remove all node links
+            links = [link for link in links if link.getHead().getPosition() != nodePosition and link.getTail().getPosition() != nodePosition]
+            # remove node
             nodes.remove(node)
 
     elif left:
@@ -88,7 +94,9 @@ while running:
         linkEnd = nearestNode(position, nodes)
 
         if linkEnd is not None and linkEnd != anchor:
-            links.append(Link(anchor, linkEnd))
+
+            links.append(Link(anchor, linkEnd, 0))
+            print(len(links))
             anchor = None
 
     elif right and anchor is None:
@@ -101,13 +109,14 @@ while running:
     
     for link in links:
         pygame.draw.line(screen, LINK_COLOR, link.getHead().getPosition(), link.getTail().getPosition(), 2)
-
-    for node in nodes:
-        pygame.draw.circle(screen, NODE_COLOR, node.getPosition(), NODE_RADIUS, 3)
-
+        
     if anchor is not None:
         pygame.draw.line(screen, LINK_COLOR, anchor.getPosition(), pygame.mouse.get_pos(), 2)
 
+    for node in nodes:
+        pygame.draw.circle(screen, NODE_COLOR, node.getPosition(), NODE_RADIUS)
+
+    
     if deleteMode:
         screen.blit(deleteText, deleteTextRect)
     
