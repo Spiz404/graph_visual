@@ -88,7 +88,7 @@ while running:
         linkEnd = nearestNode(position, nodes)
 
         if linkEnd is not None and linkEnd != anchor:
-            links.append(Link(anchor, linkEnd))
+            links.append(Link(anchor, linkEnd, 0))
             anchor = None
 
     elif right and anchor is None:
@@ -103,7 +103,7 @@ while running:
         pygame.draw.line(screen, LINK_COLOR, link.getHead().getPosition(), link.getTail().getPosition(), 2)
 
     for node in nodes:
-        pygame.draw.circle(screen, NODE_COLOR, node.getPosition(), NODE_RADIUS, 3)
+        pygame.draw.circle(screen, NODE_COLOR, node.getPosition(), NODE_RADIUS)
 
     if anchor is not None:
         pygame.draw.line(screen, LINK_COLOR, anchor.getPosition(), pygame.mouse.get_pos(), 2)
