@@ -1,63 +1,77 @@
-import pygame as pg
+import pygame
 from Node import Node 
-import math 
+import math
 from Link import Link
+from util import nearestNode
+from constants import *
 
-pg.init()
+pygame.init()
 
-screen = pg.display.set_mode((800, 800))
-clock = pg.time.Clock()
-pg.display.set_caption("graph visual")
+screen = pygame.display.set_mode((800, 800))
+clock = pygame.time.Clock()
+pygame.display.set_caption("graph visual")
 
 running = True
-node_radius = 20
+
 nodes = []
 links = []
 anchor = None
+deleteMode = False
 
-# colors
-BACKGROUND_COLOR = "black"
-NODE_COLOR = "white"
-LINK_COLOR = "red"
+# font
+font = pygame.font.Font('freesansbold.ttf', 32)
 
+# app texts
 
-def nearestNode(currentPosition, nodes):
-    
-    for node in nodes:
-            
-            nodePosition = node.getPosition()
-            d = math.sqrt(math.pow(nodePosition[0] - position[0], 2) + math.pow(nodePosition[1] - position[1],2))
-
-            if d <= node_radius:
-                return node
-    
-    return None
+deleteText = font.render("DELETE MODE", True, "red")
+deleteTextRect = deleteText.get_rect()
+deleteTextRect.center = (400, 740)
 
 
 while running:
 
-    for event in pg.event.get():
-        if event.type == pg.QUIT:
+    for event in pygame.event.get():
+
+        if event.type == pygame.QUIT:
             running = False
+
+        # checking if D pressed
+        elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_d:
+                    deleteMode = not deleteMode
 
     screen.fill(BACKGROUND_COLOR)
 
-    left, middle, right = pg.mouse.get_pressed(3)
+
+    # check for keyboard input
+
+    keyboardInput = pygame.key.get_pressed()
+    
+  
+
+
+    left, middle, right = pygame.mouse.get_pressed(3)
 
     # left mouse button click
+    if left and deleteMode:
 
-    if left:
+        position = pygame.mouse.get_pos()
+        node = nearestNode(position, nodes)
+        if node is not None:
+            nodes.remove(node)
+
+    elif left:
 
         anchor = None
         validPosition = True
-        position = pg.mouse.get_pos()
+        position = pygame.mouse.get_pos()
         
 
         for node in nodes:
             nodePosition = node.getPosition()
             d = math.sqrt(math.pow(nodePosition[0] - position[0], 2) + math.pow(nodePosition[1] - position[1],2))
 
-            if d <= 2 * node_radius:
+            if d <= 2 * NODE_RADIUS:
                 validPosition = False
                 break
         
@@ -69,35 +83,37 @@ while running:
     
     if right and anchor is not None:
         
-        position = pg.mouse.get_pos()
+        position = pygame.mouse.get_pos()
         
         linkEnd = nearestNode(position, nodes)
 
-        if linkEnd is not None:
+        if linkEnd is not None and linkEnd != anchor:
             links.append(Link(anchor, linkEnd))
             anchor = None
 
     elif right and anchor is None:
 
-        position = pg.mouse.get_pos()
+        position = pygame.mouse.get_pos()
 
         anchor = nearestNode(position, nodes)
         
     
     
     for link in links:
-        pg.draw.line(screen, LINK_COLOR, link.getHead().getPosition(), link.getTail().getPosition(), 2)
+        pygame.draw.line(screen, LINK_COLOR, link.getHead().getPosition(), link.getTail().getPosition(), 2)
 
     for node in nodes:
-        pg.draw.circle(screen, NODE_COLOR, node.getPosition(), node_radius, 3)
+        pygame.draw.circle(screen, NODE_COLOR, node.getPosition(), NODE_RADIUS, 3)
 
     if anchor is not None:
-        pg.draw.line(screen, LINK_COLOR, anchor.getPosition(), pg.mouse.get_pos(), 2)
+        pygame.draw.line(screen, LINK_COLOR, anchor.getPosition(), pygame.mouse.get_pos(), 2)
 
+    if deleteMode:
+        screen.blit(deleteText, deleteTextRect)
     
 
-    pg.display.flip()
+    pygame.display.flip()
 
     clock.tick(60)
 
-pg.quit()
+pygame.quit()
