@@ -18,6 +18,7 @@ links = []
 anchor = None
 deleteMode = False
 
+
 # font
 font = pygame.font.Font('freesansbold.ttf', 32)
 
@@ -30,6 +31,9 @@ deleteTextRect.center = (400, 740)
 
 while running:
 
+    left = False
+    right = False
+    
     for event in pygame.event.get():
 
         if event.type == pygame.QUIT:
@@ -40,6 +44,15 @@ while running:
                 if event.key == pygame.K_d:
                     deleteMode = not deleteMode
 
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+
+            match event.button:
+                case 1:
+                    left = True
+                case 3:
+                    right = True
+
+       
     screen.fill(BACKGROUND_COLOR)
 
 
@@ -50,7 +63,7 @@ while running:
   
 
 
-    left, middle, right = pygame.mouse.get_pressed(3)
+    #left, middle, right = pygame.mouse.get_pressed(3)
 
     # left mouse button click
     if left and deleteMode:
@@ -60,31 +73,42 @@ while running:
         node = nearestNode(position, nodes)
         
         if node is not None:
+
             nodePosition = node.getPosition()
             # remove all node links
             links = [link for link in links if link.getHead().getPosition() != nodePosition and link.getTail().getPosition() != nodePosition]
             # remove node
             nodes.remove(node)
 
+        
     elif left:
 
         anchor = None
         validPosition = True
         position = pygame.mouse.get_pos()
         
+        cnode = None
 
         for node in nodes:
             nodePosition = node.getPosition()
             d = math.sqrt(math.pow(nodePosition[0] - position[0], 2) + math.pow(nodePosition[1] - position[1],2))
 
             if d <= 2 * NODE_RADIUS:
+                cnode = node
                 validPosition = False
                 break
         
         if validPosition:
             nodes.append(Node(position[0], position[1]))
-
-
+        '''
+        else:
+            left, _, _ = pygame.mouse.get_pressed(3)
+            
+            while(left):
+                
+                left, _, _ = pygame.mouse.get_pressed(3)
+                cnode.updatePosition(pygame.mouse.get_pos())
+        '''
     # display nodes
     
     if right and anchor is not None:
@@ -94,7 +118,7 @@ while running:
         linkEnd = nearestNode(position, nodes)
 
         if linkEnd is not None and linkEnd != anchor:
-
+            linkEnded = True
             links.append(Link(anchor, linkEnd, 0))
             print(len(links))
             anchor = None
@@ -103,7 +127,11 @@ while running:
 
         position = pygame.mouse.get_pos()
 
+        
         anchor = nearestNode(position, nodes)
+            
+            
+
         
     
     
