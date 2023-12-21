@@ -47,6 +47,8 @@ insertText = Message(font, "INSERT MODE", "white", (400, 740))
 insertText = insertText.build()
 '''
 
+movingNode = None
+
 while running:
 
     left = False
@@ -87,6 +89,12 @@ while running:
 
                 case 1:
                     moving = False
+        
+        elif event.type == pygame.MOUSEMOTION:
+
+            if moving and movingNode is not None:
+                movingNode.updatePosition(pygame.mouse.get_pos())
+            pass
        
     screen.fill(BACKGROUND_COLOR)
 
@@ -94,8 +102,6 @@ while running:
 
     keyboardInput = pygame.key.get_pressed()
     
-    #left, middle, right = pygame.mouse.get_pressed(3)
-
     # left mouse button click
     if left and deleteMode:
 
@@ -136,9 +142,8 @@ while running:
         # moving node
 
         position = pygame.mouse.get_pos()
-        node = nearestNode(position, nodes)
-        if node is not None:
-            node.updatePosition(position)
+        movingNode = nearestNode(position, nodes)
+        
 
     # display nodes
     
