@@ -83,12 +83,14 @@ while running:
                     moving = True
                 case 3:
                     right = True
+                    
         elif event.type == pygame.MOUSEBUTTONUP:
             
             match event.button:
 
                 case 1:
                     moving = False
+                    movingNode = None
         
         elif event.type == pygame.MOUSEMOTION:
 
@@ -103,6 +105,7 @@ while running:
     keyboardInput = pygame.key.get_pressed()
     
     # left mouse button click
+
     if left and deleteMode:
 
         position = pygame.mouse.get_pos()
