@@ -88,6 +88,12 @@ while running:
 
                 case 1:
                     moving = False
+
+        
+        elif event.type == pygame.MOUSEMOTION:
+
+            if moving and movingNode is not None:
+                movingNode.updatePosition(pygame.mouse.get_pos())
        
     screen.fill(BACKGROUND_COLOR)
 
@@ -137,11 +143,7 @@ while running:
         # moving node
         print("moving node")
         position = pygame.mouse.get_pos()
-        node = nearestNode(position, nodes)
-        print(node)
-        if node is not None:
-            print("none nearest node")
-            node.updatePosition(position)
+        movingNode = nearestNode(position, nodes)
 
     # display nodes
     
