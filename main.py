@@ -59,13 +59,15 @@ while running:
 
         # checking if D pressed
         elif event.type == pygame.KEYDOWN:
+
                 if event.key == pygame.K_d:
-                    
+                    # toggle delete mode
                     deleteMode = not deleteMode
                     
                     if deleteMode:
                         insertMode = False
 
+                # toggle insert mode
                 elif event.key == pygame.K_i:
                     
                     insertMode = not insertMode
@@ -74,15 +76,14 @@ while running:
                         deleteMode = False
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
-
             match event.button:
                 case 1:
                     left = True
                     moving = True
                 case 3:
                     right = True
+
         elif event.type == pygame.MOUSEBUTTONUP:
-            
             match event.button:
 
                 case 1:
@@ -131,13 +132,15 @@ while running:
             nodes.append(Node(position[0], position[1]))
        
       
-    elif left and not insertMode and moving:
+    elif left:
 
         # moving node
-
+        print("moving node")
         position = pygame.mouse.get_pos()
         node = nearestNode(position, nodes)
+        print(node)
         if node is not None:
+            print("none nearest node")
             node.updatePosition(position)
 
     # display nodes
