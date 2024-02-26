@@ -22,7 +22,8 @@ insertMode = False
 moving = False
 linkError = False
 errorTime = None
-
+# current number of nodes -> last node number
+nodeCounter = 1
 # font
 font = pygame.font.Font('freesansbold.ttf', 32)
 
@@ -101,7 +102,6 @@ while running:
 
     keyboardInput = pygame.key.get_pressed()
     
-    #left, middle, right = pygame.mouse.get_pressed(3)
 
     # left mouse button click
     if left and deleteMode:
@@ -135,7 +135,8 @@ while running:
                 break
         
         if validPosition:
-            nodes.append(Node(position[0], position[1]))
+            nodes.append(Node(position[0], position[1], nodeCounter))
+            nodeCounter = nodeCounter + 1
        
       
     elif left:
@@ -145,7 +146,6 @@ while running:
         position = pygame.mouse.get_pos()
         movingNode = nearestNode(position, nodes)
 
-    # display nodes
     
     if right and anchor is not None and insertMode:
         
@@ -173,16 +173,21 @@ while running:
         
         anchor = nearestNode(position, nodes)
             
-            
+    # display links        
     for link in links:
         pygame.draw.line(screen, LINK_COLOR, link.getHead().getPosition(), link.getTail().getPosition(), 2)
         
+    # in the process of creating a new link, show a link attached to the anchor and the mouse
     if anchor is not None:
         pygame.draw.line(screen, LINK_COLOR, anchor.getPosition(), pygame.mouse.get_pos(), 2)
 
+    # display nodes
     for node in nodes:
         pygame.draw.circle(screen, NODE_COLOR, node.getPosition(), NODE_RADIUS)
 
+        label = Message(font, str(node.getLabel()), (0,0,0), node.getPosition())
+        label = label.buildText()
+        screen.blit(label[0], label[1])
     
     if deleteMode:
         anchor = None
