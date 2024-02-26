@@ -5,6 +5,7 @@ from Link import Link
 from util import nearestNode
 from constants import *
 from Message import Message
+from Graph import Graph
 
 pygame.init()
 
@@ -26,6 +27,9 @@ errorTime = None
 nodeCounter = 1
 # font
 font = pygame.font.Font('freesansbold.ttf', 32)
+
+# graph adjacence list
+al = Graph()
 
 # app texts
 
@@ -136,6 +140,7 @@ while running:
         
         if validPosition:
             nodes.append(Node(position[0], position[1], nodeCounter))
+            al.newNode()
             nodeCounter = nodeCounter + 1
        
       
@@ -159,6 +164,8 @@ while running:
             
             if not link in links: 
                 links.append(link)
+                al.linkNode(anchor.getLabel()  - 1, linkEnd.getLabel() - 1)
+                print(al.l)
             else:
                 linkError = True
                 errorTime = pygame.time.get_ticks()
