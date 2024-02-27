@@ -6,6 +6,7 @@ from util import nearestNode
 from constants import *
 from Message import Message
 from Graph import Graph
+from Button import Button
 
 pygame.init()
 
@@ -17,6 +18,8 @@ running = True
 
 nodes = []
 links = []
+buttons = []
+buttons.append(Button(330, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "bfs"))
 anchor = None
 deleteMode = False
 insertMode = False
@@ -25,38 +28,30 @@ linkError = False
 errorTime = None
 # current number of nodes -> last node number
 nodeCounter = 1
+movingNode = None
 # font
-font = pygame.font.Font('freesansbold.ttf', 32)
 
-# graph adjacence list
+# graph adjacence list ------------------------------------------
 al = Graph()
+#----------------------------------------------------------------
 
-# app texts
-
-deleteText = font.render("DELETE MODE", True, "red")
+# app texts ----------------------------------------------------
+deleteText = SECONDARY_FONT.render("DELETE MODE", True, "red")
 deleteTextRect = deleteText.get_rect()
-deleteTextRect.center = (400, 740)
+deleteTextRect.center = SECONDARY_CENTER
 
-insertText = font.render("INSERT MODE", True, "WHITE")
+insertText = SECONDARY_FONT.render("INSERT MODE", True, "WHITE")
 insertTextRect = deleteText.get_rect()
-insertTextRect.center = (400, 740)
+insertTextRect.center = SECONDARY_CENTER
 
-duplicateLinkError = Message(font, "DUPLICATE LINK", "red", (400, 40))
+
+duplicateLinkError = Message(FONT, "DUPLICATE LINK", "red", (400, 40))
 duplicateLinkError = duplicateLinkError.buildText()
-
-'''
-deleteText = Message(font, "DELETE, MODE", "red", (400, 740))
-deleteText = deleteText.build()
-
-insertText = Message(font, "INSERT MODE", "white", (400, 740))
-insertText = insertText.build()
-'''
+#----------------------------------------------------------------
 
 while running:
-
     left = False
     right = False
-    
     for event in pygame.event.get():
 
         if event.type == pygame.QUIT:
@@ -108,6 +103,7 @@ while running:
     
 
     # left mouse button click
+
     if left and deleteMode:
 
         position = pygame.mouse.get_pos()
@@ -192,9 +188,13 @@ while running:
     for node in nodes:
         pygame.draw.circle(screen, NODE_COLOR, node.getPosition(), NODE_RADIUS)
 
-        label = Message(font, str(node.getLabel()), (0,0,0), node.getPosition())
+        label = Message(FONT, str(node.getLabel()), (0,0,0), node.getPosition())
         label = label.buildText()
         screen.blit(label[0], label[1])
+
+    # display buttons
+    for button in buttons:
+        button.render(screen)
     
     if deleteMode:
         anchor = None
