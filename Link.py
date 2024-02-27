@@ -18,17 +18,25 @@ class Link:
     def getWeight(self):
         return self.weight
     
+    def setWeight(self, weight):
+        self.weight = weight
+    
     def render(self, screen):
         # plotting line
         pygame.draw.line(screen, LINK_COLOR, self.getHead().getPosition(), self.getTail().getPosition(), 2)
         # plotting weigth
         position = (round(0.5  * self.getHead().getPosition()[0] + 0.5 * self.getTail().getPosition()[0]), round(0.5 * self.getHead().getPosition()[1] + 0.5 * self.getTail().getPosition()[1]))
-        weightMessage = Message(SECONDARY_FONT, str(self.getWeight()), TEXT_COLOR, position)
-        weightMessage = weightMessage.buildText()
-        pygame.draw.rect(screen, BACKGROUND_COLOR, weightMessage[1])
-        screen.blit(weightMessage[0], weightMessage[1])
+        self.weightMessage = Message(SECONDARY_FONT, str(self.getWeight()), TEXT_COLOR, position)
+        self.weightMessage = self.weightMessage.buildText()
+        pygame.draw.rect(screen, BACKGROUND_COLOR, self.weightMessage[1])
+        screen.blit(self.weightMessage[0], self.weightMessage[1])
         
-
+    def checkClick(self, mousePosition):
+        
+        if self.weightMessage[1].collidepoint(mousePosition):
+            return True
+        
+        return False
 
 
     def __str__(self):

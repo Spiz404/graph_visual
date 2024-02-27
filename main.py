@@ -29,6 +29,8 @@ errorTime = None
 # current number of nodes -> last node number
 nodeCounter = 1
 movingNode = None
+modifyWeight = False
+newWeight = ""
 # font
 
 # graph adjacence list ------------------------------------------
@@ -47,7 +49,11 @@ insertTextRect.center = SECONDARY_CENTER
 
 duplicateLinkError = Message(FONT, "DUPLICATE LINK", "red", (400, 40))
 duplicateLinkError = duplicateLinkError.buildText()
+
+modLinkText = Message(SECONDARY_FONT, "type weight and press enter", TEXT_COLOR, (400,40))
+modLinkText = modLinkText.buildText()
 #----------------------------------------------------------------
+
 
 # game loop 
 while running:
@@ -78,6 +84,19 @@ while running:
                     
                     if insertMode:
                         deleteMode = False
+                
+                elif event.unicode.isdigit():
+                    newWeight += str(event.key - 48)
+
+                elif event.key == pygame.K_RETURN and modifyWeight:
+                    try:
+                        weight = int(newWeight)
+                        modLink.setWeight(weight)
+                        newWeight = ""
+                        modifyWeight = False
+                        modLink = None
+                    except:
+                        print("not a number")
 
         # checking for mouse click event
         elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -196,9 +215,15 @@ while running:
         
     # display links        
     for link in links:
-        #pygame.draw.line(screen, LINK_COLOR, link.getHead().getPosition(), link.getTail().getPosition(), 2)
-        link.render(screen)
         
+        link.render(screen)
+        if left and link.checkClick(pygame.mouse.get_pos()):
+            modifyWeight = True
+            modLink = link
+    
+    if modifyWeight:
+        screen.blit(modLinkText[0], modLinkText[1])
+
     # in the process of creating a new link, show a link attached to the anchor and the mouse position
     if anchor is not None:
         pygame.draw.line(screen, LINK_COLOR, anchor.getPosition(), pygame.mouse.get_pos(), 2)
