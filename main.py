@@ -19,7 +19,7 @@ running = True
 nodes = []
 links = []
 buttons = []
-buttons.append(Button(330, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "bfs"))
+buttons.append(Button(330, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "bfs", lambda : print("click")))
 anchor = None
 deleteMode = False
 insertMode = False
@@ -76,14 +76,18 @@ while running:
                         deleteMode = False
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
+            
             match event.button:
                 case 1:
-                    left = True
-                    moving = True
+                    for button in buttons:
+                        if not button.checkClick(pygame.mouse.get_pos()):
+                            left = True
+                            moving = True
                 case 3:
                     right = True
 
         elif event.type == pygame.MOUSEBUTTONUP:
+
             match event.button:
 
                 case 1:
@@ -102,7 +106,7 @@ while running:
     keyboardInput = pygame.key.get_pressed()
     
 
-    # left mouse button click
+    # left mouse button clickcheckClick()
 
     if left and deleteMode:
 

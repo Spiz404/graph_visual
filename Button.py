@@ -18,4 +18,9 @@ class Button:
         pygame.draw.rect(display, self.color, self.rect, border_radius=5)
         display.blit(self.message[0], self.message[1])
 
-    
+    def checkClick(self, position: tuple):
+        if self.rect.collidepoint(position[0], position[1]):
+            self.onClick()
+            return True
+        else:
+            return False
