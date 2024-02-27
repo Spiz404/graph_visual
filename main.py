@@ -221,7 +221,7 @@ while running:
             modifyWeight = True
             modLink = link
     
-    if modifyWeight:
+    if left and modifyWeight:
         screen.blit(modLinkText[0], modLinkText[1])
 
     # in the process of creating a new link, show a link attached to the anchor and the mouse position
