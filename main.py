@@ -196,7 +196,7 @@ while running:
             if not link in links: 
                 links.append(link)
                 al.linkNode(anchor.getLabel()  - 1, linkEnd.getLabel() - 1)
-                #print(al.l)
+        
             else:
                 linkError = True
                 errorTime = pygame.time.get_ticks()
@@ -221,7 +221,7 @@ while running:
             modifyWeight = True
             modLink = link
     
-    if left and modifyWeight:
+    if modifyWeight:
         screen.blit(modLinkText[0], modLinkText[1])
 
     # in the process of creating a new link, show a link attached to the anchor and the mouse position
