@@ -49,17 +49,21 @@ duplicateLinkError = Message(FONT, "DUPLICATE LINK", "red", (400, 40))
 duplicateLinkError = duplicateLinkError.buildText()
 #----------------------------------------------------------------
 
+# game loop 
 while running:
     left = False
     right = False
+
+    # checking for events
     for event in pygame.event.get():
 
         if event.type == pygame.QUIT:
             running = False
 
-        # checking if D pressed
+        
         elif event.type == pygame.KEYDOWN:
-
+                
+                # checking if D pressed
                 if event.key == pygame.K_d:
                     # toggle delete mode
                     deleteMode = not deleteMode
@@ -67,26 +71,33 @@ while running:
                     if deleteMode:
                         insertMode = False
 
-                # toggle insert mode
+                # checking if I pressed
                 elif event.key == pygame.K_i:
-                    
+                    # toggle insert mode    
                     insertMode = not insertMode
                     
                     if insertMode:
                         deleteMode = False
 
+        # checking for mouse click event
         elif event.type == pygame.MOUSEBUTTONDOWN:
             
             match event.button:
                 case 1:
+                    buttonClick = False
                     # check if a button is clicked
                     for button in buttons:
                         if button.checkClick(pygame.mouse.get_pos()):
-                            left = True
-                            moving = True
+                            buttonClick = True
+                    
+                    if not buttonClick:
+                        left = True
+                        moving = True
+
                 case 3:
                     right = True
 
+        # checking for mouse button release
         elif event.type == pygame.MOUSEBUTTONUP:
 
             match event.button:
@@ -94,7 +105,7 @@ while running:
                 case 1:
                     moving = False
 
-        
+        # checking for mouse motion    
         elif event.type == pygame.MOUSEMOTION:
 
             if moving and movingNode is not None:
@@ -107,7 +118,7 @@ while running:
     keyboardInput = pygame.key.get_pressed()
     
 
-    # left mouse button clickcheckClick()
+    # left mouse button 
 
     if left and deleteMode:
 
@@ -180,12 +191,14 @@ while running:
 
         
         anchor = nearestNode(position, nodes)
-            
+    
+    # screen elements display -----------------------------------------------------------------------------
+        
     # display links        
     for link in links:
         pygame.draw.line(screen, LINK_COLOR, link.getHead().getPosition(), link.getTail().getPosition(), 2)
         
-    # in the process of creating a new link, show a link attached to the anchor and the mouse
+    # in the process of creating a new link, show a link attached to the anchor and the mouse position
     if anchor is not None:
         pygame.draw.line(screen, LINK_COLOR, anchor.getPosition(), pygame.mouse.get_pos(), 2)
 
@@ -210,6 +223,8 @@ while running:
 
     if linkError and pygame.time.get_ticks() - errorTime < ERROR_DURATION:
         screen.blit(duplicateLinkError[0], duplicateLinkError[1])
+    
+    # -----------------------------------------------------------------------------------------------------
 
     pygame.display.flip()
 
