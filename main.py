@@ -79,8 +79,9 @@ while running:
             
             match event.button:
                 case 1:
+                    # check if a button is clicked
                     for button in buttons:
-                        if not button.checkClick(pygame.mouse.get_pos()):
+                        if button.checkClick(pygame.mouse.get_pos()):
                             left = True
                             moving = True
                 case 3:
