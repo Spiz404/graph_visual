@@ -177,7 +177,7 @@ while running:
             if not link in links: 
                 links.append(link)
                 al.linkNode(anchor.getLabel()  - 1, linkEnd.getLabel() - 1)
-                print(al.l)
+                #print(al.l)
             else:
                 linkError = True
                 errorTime = pygame.time.get_ticks()
@@ -196,7 +196,8 @@ while running:
         
     # display links        
     for link in links:
-        pygame.draw.line(screen, LINK_COLOR, link.getHead().getPosition(), link.getTail().getPosition(), 2)
+        #pygame.draw.line(screen, LINK_COLOR, link.getHead().getPosition(), link.getTail().getPosition(), 2)
+        link.render(screen)
         
     # in the process of creating a new link, show a link attached to the anchor and the mouse position
     if anchor is not None:
@@ -206,9 +207,9 @@ while running:
     for node in nodes:
         pygame.draw.circle(screen, NODE_COLOR, node.getPosition(), NODE_RADIUS)
 
-        label = Message(FONT, str(node.getLabel()), (0,0,0), node.getPosition())
-        label = label.buildText()
-        screen.blit(label[0], label[1])
+        #label = Message(FONT, str(node.getLabel()), (0,0,0), node.getPosition())
+        #label = label.buildText()
+        #screen.blit(label[0], label[1])
 
     # display buttons
     for button in buttons:
