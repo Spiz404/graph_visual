@@ -123,6 +123,7 @@ while running:
 
                 case 1:
                     moving = False
+                    movingNode = None
 
         # checking for mouse motion    
         elif event.type == pygame.MOUSEMOTION:
@@ -158,28 +159,27 @@ while running:
 
         anchor = None
         validPosition = True
-        position = pygame.mouse.get_pos()
+        mousePosition = pygame.mouse.get_pos()
         
         for node in nodes:
         
             nodePosition = node.getPosition()
-            d = math.sqrt(math.pow(nodePosition[0] - position[0], 2) + math.pow(nodePosition[1] - position[1],2))
+            d = math.sqrt(math.pow(nodePosition[0] - mousePosition[0], 2) + math.pow(nodePosition[1] - mousePosition[1],2))
             
             if d <= 2 * NODE_RADIUS:
                 validPosition = False
                 break
         
         if validPosition:
-            nodes.append(Node(position[0], position[1], nodeCounter))
+            nodes.append(Node(mousePosition[0], mousePosition[1], nodeCounter))
             al.newNode()
             nodeCounter = nodeCounter + 1
        
       
-    elif left:
+    if left and moving:
 
         # moving node
-        position = pygame.mouse.get_pos()
-        movingNode = nearestNode(position, nodes)
+        movingNode = nearestNode(pygame.mouse.get_pos(), nodes)
 
     
     if right and anchor is not None and insertMode:
