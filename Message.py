@@ -1,7 +1,7 @@
 import pygame
 class Message:
     
-    def __init__(self, font : pygame.Font, text : str, color : str, pos : tuple):
+    def __init__(self, font : pygame.font, text : str, color : str, pos : tuple):
         self.font = font
         self.pos = pos
         self.text = text
