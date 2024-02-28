@@ -7,10 +7,12 @@ import math
 from constants import *
 class Graph:
 
-    def __init__(self):
-        self.nodes = list()
-        self.links = list()
+    def __init__(self, nodes = list(), links = list()):
+        
+        self.nodes = nodes
+        self.links = links
         self.l = defaultdict(list)
+    
     
     # adding a new node
     def addNode(self, node : Node):
