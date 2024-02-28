@@ -4,26 +4,28 @@ from Graph import Graph
 from collections import deque
 
 def bfs(source : Node, graph : Graph):
-
-    print("bfs, source " + str(source.getLabel()))
     graphList = graph
     w = deque()
     w.append(source)
     vl = []
-    visited = [source]
+    visited = []
    
     while len(w) != 0:
-        print("iterazione")
         lab = w.popleft()
-        visited.append(lab)
-        print("adj list node " + str(lab.getLabel()) + " " + str(graph[str(lab)]))
+        if lab not in visited:
+            visited.append(lab)
+        print(visited)
         for element in graph[str(lab)]:
-            if element["node"] not in visited: 
-                print("elemento " + str(element))
+            print(str(element["node"].getLabel()) + " " + str(element["node"] not in visited))
+            if element["node"] not in visited:
+                visited.append(element["node"]) 
                 w.append(element["node"])
-                vl.append(Link(lab, element["node"], element["w"]))
+                link = Link(lab, element["node"], element["w"])
+                vl.append(link)
+              
 
-    print(visited)
+    print("lista visitati" + str(visited))
+    print("links " + str(vl))
     return Graph(visited, vl)
 
 def dfs(source : Node, graph : Graph):

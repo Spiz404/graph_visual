@@ -10,7 +10,7 @@ from Button import Button
 from algos import *
 
 pygame.init()
-
+global screen
 screen = pygame.display.set_mode((800, 800))
 clock = pygame.time.Clock()
 pygame.display.set_caption("graph visual")
@@ -46,13 +46,20 @@ newWeight = ""
 #----------------------------------------------------------------
 
 # onclick functions ---------------------------------------------
-def bfsButtonOnClick():
+def bfsButtonOnClick(screen):
     
     global alg
     global algGraph
 
+
+    sourceMessage = Message(FONT, "select source", "white", (400, 40))
+    sourceMessage = sourceMessage.buildText()
+    
     source = None
     while source is None:
+        screen.blit(sourceMessage[0], sourceMessage[1])
+        pygame.display.flip()
+      
         for event in pygame.event.get():
             
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -70,7 +77,7 @@ def bfsButtonOnClick():
 
 
 buttons = []
-buttons.append(Button(330, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "bfs", lambda : bfsButtonOnClick()))
+buttons.append(Button(330, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "bfs", lambda : bfsButtonOnClick(screen)))
 
 # app texts ----------------------------------------------------
 deleteText = SECONDARY_FONT.render("DELETE MODE", True, "red")
@@ -84,6 +91,9 @@ insertTextRect.center = SECONDARY_CENTER
 
 duplicateLinkError = Message(FONT, "DUPLICATE LINK", "red", (400, 40))
 duplicateLinkError = duplicateLinkError.buildText()
+
+escAlgVis = Message(SECONDARY_FONT, "press esc to end algo visualization", "white", (400,40))
+escAlgVis = escAlgVis.buildText()
 
 modLinkText = Message(SECONDARY_FONT, "type weight and press enter", TEXT_COLOR, (400,40))
 modLinkText = modLinkText.buildText()
@@ -121,6 +131,9 @@ while running:
                     if insertMode:
                         deleteMode = False
                 
+                elif event.key == pygame.K_ESCAPE and alg:
+                    alg = False
+                    algGraph = None
                 elif event.unicode.isdigit():
                     newWeight += str(event.key - 48)
 
@@ -190,7 +203,7 @@ while running:
             graph.removeNode(node)
 
         
-    elif left and insertMode:
+    elif left and insertMode and not alg:
 
         anchor = None
         mousePosition = pygame.mouse.get_pos()
@@ -203,7 +216,7 @@ while running:
         movingNode = nearestNode(pygame.mouse.get_pos(), graph.getNodes())
 
     
-    if right and anchor is not None and insertMode:
+    if right and anchor is not None and insertMode and not alg:
         
         position = pygame.mouse.get_pos()
         
@@ -220,7 +233,7 @@ while running:
             linkEnded = True
             anchor = None
 
-    elif right and anchor is None and insertMode:
+    elif right and anchor is None and insertMode and not alg:
 
         position = pygame.mouse.get_pos()
 
@@ -251,15 +264,19 @@ while running:
         graph.renderGraph(screen)
 
     # display buttons
-    for button in buttons:
-        button.render(screen)
+    if not alg:
+        for button in buttons:
+            button.render(screen)
     
-    if deleteMode:
+    if deleteMode and not alg:
         anchor = None
         screen.blit(deleteText, deleteTextRect)
     
-    elif insertMode:    
+    elif insertMode and not alg:    
         screen.blit(insertText, insertTextRect)
+
+    if alg:
+        screen.blit(escAlgVis[0], escAlgVis[1])
 
     if linkError and pygame.time.get_ticks() - errorTime < ERROR_DURATION:
         screen.blit(duplicateLinkError[0], duplicateLinkError[1])
