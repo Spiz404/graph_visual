@@ -23,4 +23,4 @@ class Node:
         label = Message(FONT, str(self.getLabel()), (0,0,0), self.getPosition())
         label = label.buildText()
         screen.blit(label[0], label[1])
-       
+    

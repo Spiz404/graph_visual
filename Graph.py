@@ -50,7 +50,8 @@ class Graph:
     def removeNode(self, node : Node):
         self.nodes.remove(node)
         nodePosition = node.getPosition()
-        self.links = [link for link in self.links if link.getHead().getPosition() != nodePosition and link.getTail().getPosition() != nodePosition]
+        # removing node links
+        self.links = [link for link in self.links if link.getHead() != node and link.getTail() != node]
     
     # render the whole graph
     def renderGraph(self, screen : pygame.surface):
