@@ -3,7 +3,8 @@ from Link import Link
 from Graph import Graph
 
 def bfs(source : Node, graph : Graph):
-    pass
+    print("bfs, source " + str(source.getLabel()))
+    return None
 
 def dfs(source : Node, graph : Graph):
     pass

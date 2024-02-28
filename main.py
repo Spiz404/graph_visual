@@ -7,6 +7,7 @@ from constants import *
 from Message import Message
 from Graph import Graph
 from Button import Button
+from algos import *
 
 pygame.init()
 
@@ -14,16 +15,21 @@ screen = pygame.display.set_mode((800, 800))
 clock = pygame.time.Clock()
 pygame.display.set_caption("graph visual")
 
+
+
+
 # graph object --------------------------------------------------
 graph = Graph()
+algGraph = Graph()
 #----------------------------------------------------------------
+
+
+
 
 # variables -----------------------------------------------------
 running = True
-#nodes = []
-#links = []
-buttons = []
-buttons.append(Button(330, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "bfs", lambda : graph.generateList()))
+alg = False
+
 anchor = None
 deleteMode = False
 insertMode = False
@@ -37,8 +43,26 @@ modifyWeight = False
 newWeight = ""
 #----------------------------------------------------------------
 
+# onclick functions ---------------------------------------------
+def bfsButtonOnClick():
+    source = None
+    while source is None:
+        for event in pygame.event.get():
+            
+            if event.type == pygame.MOUSEBUTTONDOWN:
+            
+                match event.button:
+                    case 1:
+                        pos = pygame.mouse.get_pos()
+                        source = nearestNode(pos, graph.getNodes())
+    
+    algGraph = bfs(source, graph.generateList())
+    alg = True
+    pass
+#----------------------------------------------------------------
 
-
+buttons = []
+buttons.append(Button(330, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "bfs", lambda : bfsButtonOnClick()))
 
 # app texts ----------------------------------------------------
 deleteText = SECONDARY_FONT.render("DELETE MODE", True, "red")
@@ -210,7 +234,12 @@ while running:
     if anchor is not None:
         pygame.draw.line(screen, LINK_COLOR, anchor.getPosition(), pygame.mouse.get_pos(), 2)
 
-    graph.renderGraph(screen)
+    # rendering graph 
+    if alg:
+        print("rendering alg graph")
+        algGraph.renderGraph(screen)
+    else:
+        graph.renderGraph(screen)
 
     # display buttons
     for button in buttons:
