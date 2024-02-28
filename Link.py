@@ -2,6 +2,7 @@ import pygame
 from constants import *
 from Message import Message
 import math
+from Node import Node
 class Link:
     
     def __init__(self, node1, node2, weight = 1):
@@ -9,19 +10,19 @@ class Link:
         self.tail = node2
         self.weight = weight
 
-    def getHead(self):
+    def getHead(self) -> Node:
         return self.head
     
-    def getTail(self):
+    def getTail(self) -> Node:
         return self.tail
     
-    def getWeight(self):
+    def getWeight(self) -> int:
         return self.weight
     
-    def setWeight(self, weight):
+    def setWeight(self, weight : int):
         self.weight = weight
     
-    def render(self, screen):
+    def render(self, screen : pygame.Surface):
         # plotting line
         pygame.draw.line(screen, LINK_COLOR, self.getHead().getPosition(), self.getTail().getPosition(), 2)
         # plotting weigth
@@ -31,7 +32,7 @@ class Link:
         pygame.draw.rect(screen, BACKGROUND_COLOR, self.weightMessage[1])
         screen.blit(self.weightMessage[0], self.weightMessage[1])
         
-    def checkClick(self, mousePosition):
+    def checkClick(self, mousePosition : tuple):
         
         if self.weightMessage[1].collidepoint(mousePosition):
             return True
