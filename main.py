@@ -15,15 +15,15 @@ clock = pygame.time.Clock()
 pygame.display.set_caption("graph visual")
 
 # graph object --------------------------------------------------
-al = Graph()
+graph = Graph()
 #----------------------------------------------------------------
 
 # variables -----------------------------------------------------
 running = True
-nodes = []
-links = []
+#nodes = []
+#links = []
 buttons = []
-buttons.append(Button(330, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "bfs", lambda : al.genList(nodes, links)))
+buttons.append(Button(330, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "bfs", lambda : graph.generateList()))
 anchor = None
 deleteMode = False
 insertMode = False
@@ -147,59 +147,40 @@ while running:
 
         position = pygame.mouse.get_pos()
 
-        node = nearestNode(position, nodes)
+        node = nearestNode(position, graph.getNodes())
         
         if node is not None:
 
             nodePosition = node.getPosition()
-            # remove all node links
-            links = [link for link in links if link.getHead().getPosition() != nodePosition and link.getTail().getPosition() != nodePosition]
-            # remove node
-            nodes.remove(node)
+           
+            # remove node and his links
+            graph.removeNode(node)
 
         
     elif left and insertMode:
 
         anchor = None
-        validPosition = True
         mousePosition = pygame.mouse.get_pos()
-        
-        for node in nodes:
-        
-            nodePosition = node.getPosition()
-            d = math.sqrt(math.pow(nodePosition[0] - mousePosition[0], 2) + math.pow(nodePosition[1] - mousePosition[1],2))
-            
-            if d <= 2 * NODE_RADIUS:
-                validPosition = False
-                break
-        
-        if validPosition:
-            nodes.append(Node(mousePosition[0], mousePosition[1], nodeCounter))
-            #al.newNode()
-            nodeCounter = nodeCounter + 1
-       
+        graph.addNode(Node(mousePosition[0], mousePosition[1], nodeCounter))
+        nodeCounter += 1
       
     if left and moving:
 
         # moving node
-        movingNode = nearestNode(pygame.mouse.get_pos(), nodes)
+        movingNode = nearestNode(pygame.mouse.get_pos(), graph.getNodes())
 
     
     if right and anchor is not None and insertMode:
         
         position = pygame.mouse.get_pos()
         
-        linkEnd = nearestNode(position, nodes)
+        linkEnd = nearestNode(position, graph.getNodes())
 
         if linkEnd is not None and linkEnd != anchor:
             
             link = Link(anchor, linkEnd, 1)
             
-            if not link in links: 
-                links.append(link)
-                #al.linkNode(anchor.getLabel()  - 1, linkEnd.getLabel() - 1)
-        
-            else:
+            if not graph.addLink(link):
                 linkError = True
                 errorTime = pygame.time.get_ticks()
 
@@ -211,16 +192,14 @@ while running:
         position = pygame.mouse.get_pos()
 
         
-        anchor = nearestNode(position, nodes)
+        anchor = nearestNode(position, graph.getNodes())
     
     # screen elements display -----------------------------------------------------------------------------
-        
+
     # display links        
-    for link in links:
-        
-        link.render(screen)
+    for link in graph.getLinks():
         # check for weight click
-        if not insertMode and left and link.checkClick(pygame.mouse.get_pos()):
+        if not insertMode and not deleteMode and left and link.checkClick(pygame.mouse.get_pos()):
             modifyWeight = True
             modLink = link
     
@@ -231,11 +210,7 @@ while running:
     if anchor is not None:
         pygame.draw.line(screen, LINK_COLOR, anchor.getPosition(), pygame.mouse.get_pos(), 2)
 
-    # display nodes
-    for node in nodes:
-        node.render(screen)
-
-       
+    graph.renderGraph(screen)
 
     # display buttons
     for button in buttons:
