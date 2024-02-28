@@ -1,4 +1,5 @@
 import pygame
+from Message import Message
 from constants import *
 class Node:
     def __init__(self, x, y, label):
@@ -19,4 +20,7 @@ class Node:
 
     def render(self, screen):
         pygame.draw.circle(screen, NODE_COLOR, self.getPosition(), NODE_RADIUS)
-        #pygame.draw.rect(screen, NODE_COLOR, self.shape, border_radius=round(NODE_RADIUS/2))
+        label = Message(FONT, str(self.getLabel()), (0,0,0), self.getPosition())
+        label = label.buildText()
+        screen.blit(label[0], label[1])
+       

@@ -172,7 +172,7 @@ while running:
         
         if validPosition:
             nodes.append(Node(mousePosition[0], mousePosition[1], nodeCounter))
-            al.newNode()
+            #al.newNode()
             nodeCounter = nodeCounter + 1
        
       
@@ -194,7 +194,7 @@ while running:
             
             if not link in links: 
                 links.append(link)
-                al.linkNode(anchor.getLabel()  - 1, linkEnd.getLabel() - 1)
+                #al.linkNode(anchor.getLabel()  - 1, linkEnd.getLabel() - 1)
         
             else:
                 linkError = True
@@ -217,7 +217,7 @@ while running:
         
         link.render(screen)
         # check for weight click
-        if left and link.checkClick(pygame.mouse.get_pos()):
+        if not insertMode and left and link.checkClick(pygame.mouse.get_pos()):
             modifyWeight = True
             modLink = link
     
@@ -230,12 +230,9 @@ while running:
 
     # display nodes
     for node in nodes:
-        #pygame.draw.circle(screen, NODE_COLOR, node.getPosition(), NODE_RADIUS)
         node.render(screen)
 
-        #label = Message(FONT, str(node.getLabel()), (0,0,0), node.getPosition())
-        #label = label.buildText()
-        #screen.blit(label[0], label[1])
+       
 
     # display buttons
     for button in buttons:
