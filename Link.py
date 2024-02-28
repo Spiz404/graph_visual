@@ -5,7 +5,7 @@ import math
 from Node import Node
 class Link:
     
-    def __init__(self, node1, node2, weight = 1):
+    def __init__(self, node1 : Node, node2 : Node, weight = 1):
         self.head = node1
         self.tail = node2
         self.weight = weight
