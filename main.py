@@ -178,7 +178,6 @@ while running:
     elif left:
 
         # moving node
-        print("moving node")
         position = pygame.mouse.get_pos()
         movingNode = nearestNode(position, nodes)
 
@@ -217,6 +216,7 @@ while running:
     for link in links:
         
         link.render(screen)
+        # check for weight click
         if left and link.checkClick(pygame.mouse.get_pos()):
             modifyWeight = True
             modLink = link
