@@ -20,6 +20,7 @@ pygame.display.set_caption("graph visual")
 
 # graph object --------------------------------------------------
 graph = Graph()
+global algGraph 
 algGraph = Graph()
 #----------------------------------------------------------------
 
@@ -28,6 +29,7 @@ algGraph = Graph()
 
 # variables -----------------------------------------------------
 running = True
+global alg
 alg = False
 
 anchor = None
@@ -45,6 +47,10 @@ newWeight = ""
 
 # onclick functions ---------------------------------------------
 def bfsButtonOnClick():
+    
+    global alg
+    global algGraph
+
     source = None
     while source is None:
         for event in pygame.event.get():
@@ -58,8 +64,10 @@ def bfsButtonOnClick():
     
     algGraph = bfs(source, graph.generateList())
     alg = True
-    pass
+    return True
+    print(alg)
 #----------------------------------------------------------------
+
 
 buttons = []
 buttons.append(Button(330, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "bfs", lambda : bfsButtonOnClick()))
@@ -84,6 +92,7 @@ modLinkText = modLinkText.buildText()
 
 # game loop 
 while running:
+
     left = False
     right = False
 
@@ -235,8 +244,8 @@ while running:
         pygame.draw.line(screen, LINK_COLOR, anchor.getPosition(), pygame.mouse.get_pos(), 2)
 
     # rendering graph 
+
     if alg:
-        print("rendering alg graph")
         algGraph.renderGraph(screen)
     else:
         graph.renderGraph(screen)
