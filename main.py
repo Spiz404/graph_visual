@@ -14,12 +14,16 @@ screen = pygame.display.set_mode((800, 800))
 clock = pygame.time.Clock()
 pygame.display.set_caption("graph visual")
 
-running = True
+# graph object --------------------------------------------------
+al = Graph()
+#----------------------------------------------------------------
 
+# variables -----------------------------------------------------
+running = True
 nodes = []
 links = []
 buttons = []
-buttons.append(Button(330, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "bfs", lambda : print("click")))
+buttons.append(Button(330, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "bfs", lambda : al.genList(nodes, links)))
 anchor = None
 deleteMode = False
 insertMode = False
@@ -31,11 +35,10 @@ nodeCounter = 1
 movingNode = None
 modifyWeight = False
 newWeight = ""
-# font
-
-# graph adjacence list ------------------------------------------
-al = Graph()
 #----------------------------------------------------------------
+
+
+
 
 # app texts ----------------------------------------------------
 deleteText = SECONDARY_FONT.render("DELETE MODE", True, "red")
