@@ -8,3 +8,4 @@ class Graph:
 
     def linkNode(self, start, end):
         self.l[start].append(end)
+

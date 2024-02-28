@@ -230,7 +230,8 @@ while running:
 
     # display nodes
     for node in nodes:
-        pygame.draw.circle(screen, NODE_COLOR, node.getPosition(), NODE_RADIUS)
+        #pygame.draw.circle(screen, NODE_COLOR, node.getPosition(), NODE_RADIUS)
+        node.render(screen)
 
         #label = Message(FONT, str(node.getLabel()), (0,0,0), node.getPosition())
         #label = label.buildText()
