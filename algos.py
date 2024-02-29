@@ -40,7 +40,7 @@ def dfs(graph : Graph):
             visited.append(node)
             for element in ll[str(node)]:
                 if element["node"] not in visited:
-                    outLinks.append(Link(node, element["node"]))
+                    outLinks.append(Link(node, element["node"], element["w"]))
                     visit(element["node"])
 
     for node in nodes:
