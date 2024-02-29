@@ -19,8 +19,9 @@ pygame.display.set_caption("graph visual")
 
 
 # graph object --------------------------------------------------
+global graph
+global algGraph
 graph = Graph()
-global algGraph 
 algGraph = Graph()
 #----------------------------------------------------------------
 
@@ -31,7 +32,6 @@ algGraph = Graph()
 running = True
 global alg
 alg = False
-
 anchor = None
 deleteMode = False
 insertMode = False
@@ -52,7 +52,6 @@ def bfsButtonOnClick(screen):
     global alg
     global algGraph
 
-
     sourceMessage = Message(FONT, "select source", "white", (400, 40))
     sourceMessage = sourceMessage.buildText()
     
@@ -72,9 +71,14 @@ def bfsButtonOnClick(screen):
     
     algGraph = bfs(source, graph.generateList())
     alg = True
-    print(alg)
 
-def dfsButtonClick(screen):
+def dfsButtonOnClick(screen):
+
+    global algGraph
+    global alg
+    alg = True
+    algGraph = dfs(graph)
+
     pass
 
 def mstButtonclick(screen):
@@ -89,6 +93,7 @@ def dijkstraButtonClick(screen):
 
 buttons = []
 buttons.append(Button(330, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "bfs", lambda : bfsButtonOnClick(screen)))
+buttons.append(Button(450, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "dfs", lambda : dfsButtonOnClick(screen)))
 
 # app texts ----------------------------------------------------
 deleteText = SECONDARY_FONT.render("DELETE MODE", True, "red")

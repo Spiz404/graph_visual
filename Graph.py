@@ -66,6 +66,5 @@ class Graph:
 
 
     def generateList(self):
-        print("here")
-        print(self.getLinks())
+        #print(self.getLinks())
         return util.genList(self.getNodes(), self.getLinks())

@@ -24,6 +24,4 @@ def genList(nodes : list[Node], links) -> dict:
             l[str(head)].append({"node" : tail, "w" : link.getWeight()})
             l[str(tail)].append({"node" : head, "w" : link.getWeight()})
 
-        print(l)
-
         return l

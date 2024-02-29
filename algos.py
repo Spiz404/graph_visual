@@ -27,8 +27,27 @@ def bfs(source : Node, graph : Graph):
 
 # TODO ALL THIS ALGOS
 
-def dfs(source : Node, graph : Graph):
-    pass
+def dfs(graph : Graph):
+
+    nodes = graph.getNodes()
+    links = graph.getLinks()
+    ll = graph.generateList()
+    outLinks = []
+    visited = []
+
+    def visit(node):
+        if node not in visited:
+            visited.append(node)
+            for element in ll[str(node)]:
+                if element["node"] not in visited:
+                    outLinks.append(Link(node, element["node"]))
+                    visit(element["node"])
+
+    for node in nodes:
+        if node not in visited:
+            visit(node)
+
+    return Graph(visited, outLinks)
 
 def mst(graph : Graph):
     pass
