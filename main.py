@@ -46,6 +46,7 @@ newWeight = ""
 #----------------------------------------------------------------
 
 # onclick functions ---------------------------------------------
+
 def bfsButtonOnClick(screen):
     
     global alg
@@ -71,8 +72,18 @@ def bfsButtonOnClick(screen):
     
     algGraph = bfs(source, graph.generateList())
     alg = True
-    return True
     print(alg)
+
+def dfsButtonClick(screen):
+    pass
+
+def mstButtonclick(screen):
+    pass
+
+def dijkstraButtonClick(screen):
+    pass
+
+
 #----------------------------------------------------------------
 
 

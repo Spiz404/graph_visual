@@ -25,8 +25,13 @@ def bfs(source : Node, graph : Graph):
 
     return Graph(visited, vl)
 
+# TODO ALL THIS ALGOS
+
 def dfs(source : Node, graph : Graph):
     pass
 
 def mst(graph : Graph):
+    pass
+
+def dijkstra(graph : Graph, source : Node, dest : Node):
     pass
