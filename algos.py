@@ -3,6 +3,8 @@ from Link import Link
 from Graph import Graph
 from collections import deque
 
+# bfs visit, return visit tree
+
 def bfs(source : Node, graph : Graph):
     graphList = graph
     w = deque()
@@ -25,7 +27,7 @@ def bfs(source : Node, graph : Graph):
 
     return Graph(visited, vl)
 
-# TODO ALL THIS ALGOS
+# dfs visit, return visit forest
 
 def dfs(graph : Graph):
 
