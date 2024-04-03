@@ -54,12 +54,26 @@ def dfs(graph : Graph):
 
 def mst(graph : Graph):
     
+    fringe = []
     nodes = graph.getNodes()
-    if nodes:
-        links = graph.getLinks()
-        outLinks = []
-        ll = graph.generateList()
-        startingNode = nodes[random.randrange(0, len(nodes), 1)]
+    if not nodes:
+        return []
+    
+    links = graph.getLinks()
+    outLinks = []
+    visited = []
+
+    ll = graph.generateList()
+    
+    # selecting first node randomly
+    node = nodes[random.randrange(0, len(nodes), 1)]
+    
+    # looping until every node has been visited
+    while len(visited) < len(nodes):
+        
+        # getting node links
+        nodeLinks = ll[str(node)]
+        print(nodeLinks)
     
 
 def dijkstra(graph : Graph, source : Node, dest : Node):
