@@ -1,7 +1,9 @@
 from Node import Node
 from Link import Link
 from Graph import Graph
-from collections import deque
+from collections import deque, defaultdict
+import sys
+import random
 
 # bfs visit, return visit tree
 
@@ -51,8 +53,78 @@ def dfs(graph : Graph):
 
     return Graph(visited, outLinks)
 
+
+def extractMin(nodes : dict, visitedList : list[Node]):
+
+    min = sys.maxsize
+    node = None
+    for k, v in nodes.items():
+        if v < min and k not in visitedList:
+            min = v
+            node = k
+    
+    return node
+
 def mst(graph : Graph):
-    pass
+    
+   
+    nodes = graph.getNodes()
+    if not nodes:
+        return []
+    print("nodes " + str(nodes))
+    weights = defaultdict(lambda  : sys.maxsize)
+    prec = defaultdict(lambda  : None)
+    
+    links = graph.getLinks()
+    outLinks = []
+    visited = []
+
+    ll = graph.generateList()
+    
+    # selecting first node randomly
+    node = nodes[random.randrange(0, len(nodes), 1)]
+    weights[node] = 0
+    prec[node] = node
+    visited = 0
+    visitedList = []
+
+    # looping until every node has been visited
+    while visited < len(nodes):
+        
+        #print(weights)
+        print(prec)
+
+        # extracting min node
+        minNode = extractMin(weights, visitedList)
+        visitedList.append(minNode)
+        #print(visited)
+        print(minNode)
+        visited += 1
+        print("minNode " + str(minNode))
+        # getting node links
+        nodeLinks = ll[str(minNode)]
+        print("nodo precedente " + str(prec[minNode]))
+        outLinks.append(Link(prec[minNode], minNode, weights[minNode]))
+        print("adjacent nodes: " + str(nodeLinks))
+
+        # updating dict weight entry for adjacent nodes
+        for e in nodeLinks:
+            if weights[e["node"]] > e["w"]:
+                print("update")
+                weights[e["node"]] = e["w"]
+                
+                prec[e["node"]] = minNode
+                print(prec[e["node"]])
+    
+    print("outlinks " + str(len(outLinks)))
+    for link in outLinks:
+        if link.head == None or link.tail == None:
+            print("None")
+
+    for link in outLinks:
+        print("link " + str(link.getHead()) + str(link.getHead())) 
+
+    return Graph(nodes, outLinks)
 
 def dijkstra(graph : Graph, source : Node, dest : Node):
     pass

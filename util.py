@@ -16,12 +16,3 @@ def nearestNode(currentPosition, nodes):
     
     return None
 
-def genList(nodes : list[Node], links) -> dict:
-        l = defaultdict(list)
-        for link in links:
-            head = link.getHead()
-            tail = link.getTail()
-            l[str(head)].append({"node" : tail, "w" : link.getWeight()})
-            l[str(tail)].append({"node" : head, "w" : link.getWeight()})
-
-        return l
