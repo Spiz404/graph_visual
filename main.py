@@ -48,7 +48,11 @@ newWeight = ""
 # onclick functions ---------------------------------------------
 
 def mstButtonClick(screen):
-    mst(graph)
+    global alg
+    global algGraph
+    
+    algGraph = mst(graph)
+    alg = True
 
 
 def bfsButtonOnClick(screen):
