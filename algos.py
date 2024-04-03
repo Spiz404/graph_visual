@@ -54,12 +54,12 @@ def dfs(graph : Graph):
     return Graph(visited, outLinks)
 
 
-def extractMin(nodes : dict):
+def extractMin(nodes : dict, visitedList : list[Node]):
 
     min = sys.maxsize
     node = None
     for k, v in nodes.items():
-        if v < min:
+        if v < min and k not in visitedList:
             min = v
             node = k
     
@@ -67,7 +67,7 @@ def extractMin(nodes : dict):
 
 def mst(graph : Graph):
     
-    fringe = []
+   
     nodes = graph.getNodes()
     if not nodes:
         return []
@@ -84,23 +84,27 @@ def mst(graph : Graph):
     # selecting first node randomly
     node = nodes[random.randrange(0, len(nodes), 1)]
     weights[node] = 0
+    prec[node] = node
     visited = 0
-    fringe = []
+    visitedList = []
 
     # looping until every node has been visited
     while visited < len(nodes):
         
-        print(weights)
+        #print(weights)
+        print(prec)
 
         # extracting min node
-        minNode = extractMin(weights)
-        print(visited)
+        minNode = extractMin(weights, visitedList)
+        visitedList.append(minNode)
+        #print(visited)
         print(minNode)
         visited += 1
         print("minNode " + str(minNode))
         # getting node links
         nodeLinks = ll[str(minNode)]
-        outLinks.append(Link(prec[minNode], minNode, 1))
+        print("nodo precedente " + str(prec[minNode]))
+        outLinks.append(Link(prec[minNode], minNode, weights[minNode]))
         print("adjacent nodes: " + str(nodeLinks))
 
         # updating dict weight entry for adjacent nodes
@@ -116,6 +120,10 @@ def mst(graph : Graph):
     for link in outLinks:
         if link.head == None or link.tail == None:
             print("None")
+
+    for link in outLinks:
+        print("link " + str(link.getHead()) + str(link.getHead())) 
+
     return Graph(nodes, outLinks)
 
 def dijkstra(graph : Graph, source : Node, dest : Node):
