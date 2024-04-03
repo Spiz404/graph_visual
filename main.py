@@ -48,7 +48,7 @@ newWeight = ""
 # onclick functions ---------------------------------------------
 
 def mstButtonClick(screen):
-    pass
+    mst(graph)
 
 
 def bfsButtonOnClick(screen):
@@ -85,8 +85,6 @@ def dfsButtonOnClick(screen):
 
     pass
 
-def mstButtonclick(screen):
-    pass
 
 def dijkstraButtonClick(screen):
     pass

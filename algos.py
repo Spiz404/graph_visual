@@ -2,6 +2,7 @@ from Node import Node
 from Link import Link
 from Graph import Graph
 from collections import deque
+import random
 
 # bfs visit, return visit tree
 
@@ -52,7 +53,14 @@ def dfs(graph : Graph):
     return Graph(visited, outLinks)
 
 def mst(graph : Graph):
-    pass
+    
+    nodes = graph.getNodes()
+    if nodes:
+        links = graph.getLinks()
+        outLinks = []
+        ll = graph.generateList()
+        startingNode = nodes[random.randrange(0, len(nodes), 1)]
+    
 
 def dijkstra(graph : Graph, source : Node, dest : Node):
     pass
