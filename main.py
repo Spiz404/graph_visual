@@ -267,9 +267,11 @@ while running:
         # check for weight click
         if not insertMode and not deleteMode and left and link.checkClick(pygame.mouse.get_pos()):
             modifyWeight = True
+            newWeight = ""
             modLink = link
     
     if modifyWeight:
+
         screen.blit(modLinkText[0], modLinkText[1])
 
     # in the process of creating a new link, show a link attached to the anchor and the mouse position
