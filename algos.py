@@ -90,33 +90,26 @@ def mst(graph : Graph):
 
     # looping until every node has been visited
     while visited < len(nodes):
-        
-        #print(weights)
-        print(prec)
 
         # extracting min node
         minNode = extractMin(weights, visitedList)
         visitedList.append(minNode)
-        #print(visited)
-        print(minNode)
+       
         visited += 1
-        print("minNode " + str(minNode))
+       
         # getting node links
         nodeLinks = ll[str(minNode)]
-        print("nodo precedente " + str(prec[minNode]))
+    
         outLinks.append(Link(prec[minNode], minNode, weights[minNode]))
-        print("adjacent nodes: " + str(nodeLinks))
-
+       
         # updating dict weight entry for adjacent nodes
         for e in nodeLinks:
             if weights[e["node"]] > e["w"]:
-                print("update")
+           
                 weights[e["node"]] = e["w"]
-                
                 prec[e["node"]] = minNode
-                print(prec[e["node"]])
-    
-    print("outlinks " + str(len(outLinks)))
+              
+  
     for link in outLinks:
         if link.head == None or link.tail == None:
             print("None")
