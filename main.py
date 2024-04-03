@@ -47,6 +47,14 @@ newWeight = ""
 
 # onclick functions ---------------------------------------------
 
+def mstButtonClick(screen):
+    global alg
+    global algGraph
+    
+    algGraph = mst(graph)
+    alg = True
+
+
 def bfsButtonOnClick(screen):
     
     global alg
@@ -81,8 +89,6 @@ def dfsButtonOnClick(screen):
 
     pass
 
-def mstButtonclick(screen):
-    pass
 
 def dijkstraButtonClick(screen):
     pass
@@ -92,8 +98,10 @@ def dijkstraButtonClick(screen):
 
 
 buttons = []
+buttons.append(Button(210, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "mst", lambda: mstButtonClick(screen)))
 buttons.append(Button(330, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "bfs", lambda : bfsButtonOnClick(screen)))
 buttons.append(Button(450, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "dfs", lambda : dfsButtonOnClick(screen)))
+
 
 # app texts ----------------------------------------------------
 deleteText = SECONDARY_FONT.render("DELETE MODE", True, "red")
