@@ -101,6 +101,7 @@ buttons = []
 buttons.append(Button(210, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "mst", lambda: mstButtonClick(screen)))
 buttons.append(Button(330, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "bfs", lambda : bfsButtonOnClick(screen)))
 buttons.append(Button(450, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "dfs", lambda : dfsButtonOnClick(screen)))
+buttons.append(Button(570, 750, 125, 40, BUTTON_BACKGROUND_COLOR, "dijkstra", lambda : dijkstraButtonClick(screen) ))
 
 
 # app texts ----------------------------------------------------
@@ -275,6 +276,7 @@ while running:
         screen.blit(modLinkText[0], modLinkText[1])
 
     # in the process of creating a new link, show a link attached to the anchor and the mouse position
+        
     if anchor is not None:
         pygame.draw.line(screen, LINK_COLOR, anchor.getPosition(), pygame.mouse.get_pos(), 2)
 
