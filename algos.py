@@ -120,4 +120,52 @@ def mst(graph : Graph):
     return Graph(nodes, outLinks)
 
 def dijkstra(graph : Graph, source : Node, dest : Node):
-    pass
+    
+    ll = graph.generateList()
+    
+    w = defaultdict(lambda : sys.maxsize)
+    p = defaultdict(lambda : None)
+    w[source] = 0
+    visited = []
+    app = [source]
+
+    while True:
+
+        node = extractMin(w, visited)
+        print(node.label)
+        # if I extract a node with w = inf it means that every reachable node has been visited
+        
+        if w[node] == sys.maxsize or len(visited) == len(graph.getNodes()) or node == dest:
+            break
+
+        visited.append(node)
+
+        for n in ll[str(node)]:
+            if w[n["node"]] > w[node] + n["w"]:
+                w[n["node"]] = w[node] + n["w"]
+                p[n["node"]] = node
+
+    prec = dest
+    outNodes = [dest]
+    outLinks = []
+    iter = 0
+    print(p)
+    print("predecessor")
+    while prec != source:
+        iter += 1
+        outLinks.append(Link(p[prec], prec, 1))
+        prec = p[prec]
+        print(prec)
+        outNodes.append(prec)
+        
+    
+    print(outNodes)
+    print(outLinks)
+    print(w)
+    #print(p)
+    '''
+    for k,v in p.items():
+        print(str(k.label) + " " + str(v.label))
+    print("end dijkstra")
+    '''
+    return Graph(outNodes, outLinks)
