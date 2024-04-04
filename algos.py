@@ -119,6 +119,7 @@ def mst(graph : Graph):
 
     return Graph(nodes, outLinks)
 
+# -- NEED REFACTOR -> BAD LINK WEIGHT LOOK UP
 def dijkstra(graph : Graph, source : Node, dest : Node):
     
     ll = graph.generateList()
@@ -149,23 +150,16 @@ def dijkstra(graph : Graph, source : Node, dest : Node):
     outNodes = [dest]
     outLinks = []
     iter = 0
-    print(p)
-    print("predecessor")
+    
     while prec != source:
         iter += 1
-        outLinks.append(Link(p[prec], prec, 1))
+
+        # searching for link between the nodes
+        link = [l for l in graph.getLinks() if l.__eq__(Link(p[prec], prec, 1))]
+        
+        outLinks.append(link[0])
         prec = p[prec]
         print(prec)
         outNodes.append(prec)
-        
     
-    print(outNodes)
-    print(outLinks)
-    print(w)
-    #print(p)
-    '''
-    for k,v in p.items():
-        print(str(k.label) + " " + str(v.label))
-    print("end dijkstra")
-    '''
     return Graph(outNodes, outLinks)

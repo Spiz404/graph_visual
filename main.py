@@ -96,6 +96,7 @@ def dijkstraButtonClick(screen):
     global alg
 
 
+    dijkstraSourceAndDest = []
     dijkstraText = Message(FONT, "select source and destination", TEXT_COLOR, (400,40))
     dijkstraText = dijkstraText.buildText()
 
