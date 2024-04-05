@@ -3,16 +3,15 @@
 Tool to create graphs (and modify) and visualize common algorithms result!
 
 This tool revolves around 4 modes: 
-```diff
-+ visualize mode
-+ insert mode
+- visualize mode
+- insert mode
 - delete mode
-# algo result visualize mode
-```
+- algo result visualize mode
+
 ## Visualize mode
 <p align="center">
-  <img width="200" src="https://github.com/Spiz404/graph_visual/assets/58977203/e899b9ff-4876-4771-abc2-32baea77b4d6" alt="visualize mode">
-![graph](https://github.com/Spiz404/graph_visual/assets/58977203/e899b9ff-4876-4771-abc2-32baea77b4d6) \
+  <img width="400" src="https://github.com/Spiz404/graph_visual/assets/58977203/e899b9ff-4876-4771-abc2-32baea77b4d6" alt="visualize mode">
+
 </p>
 In this mode you can:
 - visualize your graph
