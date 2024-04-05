@@ -1,5 +1,6 @@
 # Graph Visualization Tool
 
+
 Tool to create graphs (and modify) and visualize common algorithms result!
 
 This tool revolves around 4 modes: 
@@ -43,4 +44,5 @@ Warning! No delete confirmation will be asked before removing, pay attention!
 If you click on one of the four algo buttons you may have to follow some steps (eg selecting source node for bfs visit)
 and than you will get in the result visualization state! \
 You can come back to visualize mode by clicking on the esc button.
+
 

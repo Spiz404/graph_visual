@@ -119,5 +119,47 @@ def mst(graph : Graph):
 
     return Graph(nodes, outLinks)
 
+# -- NEED REFACTOR -> BAD LINK WEIGHT LOOK UP
 def dijkstra(graph : Graph, source : Node, dest : Node):
-    pass
+    
+    ll = graph.generateList()
+    
+    w = defaultdict(lambda : sys.maxsize)
+    p = defaultdict(lambda : None)
+    w[source] = 0
+    visited = []
+    app = [source]
+
+    while True:
+
+        node = extractMin(w, visited)
+        print(node.label)
+        # if I extract a node with w = inf it means that every reachable node has been visited
+        
+        if w[node] == sys.maxsize or len(visited) == len(graph.getNodes()) or node == dest:
+            break
+
+        visited.append(node)
+
+        for n in ll[str(node)]:
+            if w[n["node"]] > w[node] + n["w"]:
+                w[n["node"]] = w[node] + n["w"]
+                p[n["node"]] = node
+
+    prec = dest
+    outNodes = [dest]
+    outLinks = []
+    iter = 0
+    
+    while prec != source:
+        iter += 1
+
+        # searching for link between the nodes
+        link = [l for l in graph.getLinks() if l.__eq__(Link(p[prec], prec, 1))]
+        
+        outLinks.append(link[0])
+        prec = p[prec]
+        print(prec)
+        outNodes.append(prec)
+    
+    return Graph(outNodes, outLinks)
