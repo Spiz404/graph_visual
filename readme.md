@@ -11,7 +11,7 @@ This tool revolves around 4 modes:
 
 ## Visualize mode
 <p align="center">
-  <img width="400" src="https://github.com/Spiz404/graph_visual/assets/58977203/95bf31be-54be-4a55-8bd2-766e27111def" alt="visualize mode">
+  <img src="https://github.com/Spiz404/graph_visual/assets/58977203/95bf31be-54be-4a55-8bd2-766e27111def" alt="visualize mode">
 </p>
 
 In this mode you can:
