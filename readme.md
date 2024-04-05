@@ -26,6 +26,9 @@ In this mode you can:
 
 ## Delete mode
 
+![delete-mode](https://github.com/Spiz404/graph_visual/assets/58977203/2b613b99-0ab2-4e98-a9e4-4b547297c70a)
+
+
 In this mode you can delete a node and it's edges by left clicking on it 
 
 Warning! No delete confirmation will be asked before removing, pay attention!
