@@ -20,7 +20,7 @@ In this mode you can:
 
 ## Insert mode
 <p align="center">
-  <img width="600" src="https://github.com/Spiz404/graph_visual/assets/58977203/9d1c31a9-313e-46d4-8538-b15c1e4133d1" alt="insert mode">
+  <img width="400" src="https://github.com/Spiz404/graph_visual/assets/58977203/9d1c31a9-313e-46d4-8538-b15c1e4133d1" alt="insert mode">
 </p>
 
 In this mode you can:
