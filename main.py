@@ -123,10 +123,10 @@ def dijkstraButtonClick(screen):
 
 
 buttons = []
-buttons.append(Button(210, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "mst", lambda: mstButtonClick(screen)))
-buttons.append(Button(330, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "bfs", lambda : bfsButtonOnClick(screen)))
-buttons.append(Button(450, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "dfs", lambda : dfsButtonOnClick(screen)))
-buttons.append(Button(570, 750, 125, 40, BUTTON_BACKGROUND_COLOR, "dijkstra", lambda : dijkstraButtonClick(screen) ))
+buttons.append(Button(100, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "mst", lambda: mstButtonClick(screen)))
+buttons.append(Button(259, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "bfs", lambda : bfsButtonOnClick(screen)))
+buttons.append(Button(416, 750, 100, 40, BUTTON_BACKGROUND_COLOR, "dfs", lambda : dfsButtonOnClick(screen)))
+buttons.append(Button(575, 750, 125, 40, BUTTON_BACKGROUND_COLOR, "dijkstra", lambda : dijkstraButtonClick(screen) ))
 
 #----------------------------------------------------------------
 
