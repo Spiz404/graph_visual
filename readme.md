@@ -18,6 +18,8 @@ In this mode you can:
 
 ## Insert mode
 
+![insert-mode](https://github.com/Spiz404/graph_visual/assets/58977203/9d1c31a9-313e-46d4-8538-b15c1e4133d1) \
+
 In this mode you can:
 - insert a new node with a left click
 - insert a new edge by right clicking on the source node and then on the destination node
