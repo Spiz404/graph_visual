@@ -20,7 +20,7 @@ In this mode you can:
 
 ## Insert mode
 <p align="center">
-  <img width="400" src="https://github.com/Spiz404/graph_visual/assets/58977203/9d1c31a9-313e-46d4-8538-b15c1e4133d1" alt="insert mode">
+  <img src="https://github.com/Spiz404/graph_visual/assets/58977203/c66c57c8-2a5f-4789-8ad6-fc579873e623" alt="insert mode">
 </p>
 
 In this mode you can:
@@ -29,9 +29,8 @@ In this mode you can:
 
 ## Delete mode
 <p align="center">
-  <img src="https://github.com/Spiz404/graph_visual/assets/58977203/2b613b99-0ab2-4e98-a9e4-4b547297c70a" alt="delete mode">
+  <img src="https://github.com/Spiz404/graph_visual/assets/58977203/39b6d7b5-7bf9-4722-9b05-ed0eba247ffe" alt="delete mode">
 </p>
-
 In this mode you can delete a node and it's edges by left clicking on it 
 
 Warning! No delete confirmation will be asked before removing, pay attention!
