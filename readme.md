@@ -11,6 +11,7 @@ This tool revolves around 4 modes:
 ```
 ## Visualize mode
 <p align="center">
+  <img width="200" src="https://github.com/Spiz404/graph_visual/assets/58977203/e899b9ff-4876-4771-abc2-32baea77b4d6" alt="visualize mode">
 ![graph](https://github.com/Spiz404/graph_visual/assets/58977203/e899b9ff-4876-4771-abc2-32baea77b4d6) \
 </p>
 In this mode you can:
