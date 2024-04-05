@@ -42,7 +42,8 @@ Warning! No delete confirmation will be asked before removing, pay attention!
 <img src="https://github.com/Spiz404/graph_visual/assets/58977203/6cfb2c0d-6cb9-4413-96dd-e1f3f3a1ca4c" alt="algo result visualize mode">
 </p>
 If you click on one of the four algo buttons you may have to follow some steps (eg selecting source node for bfs visit)
-and than you will get in the result visualization state! \
-You can come back to visualize mode by clicking on the esc button.
+and than you will get in the result visualization state! 
+
+You can go back to visualize mode by clicking on the esc button.
 
 
