@@ -10,7 +10,7 @@ This tool revolves around 4 modes:
 # algo result visualize mode
 ```
 ## Visualize mode
-![graph](https://github.com/Spiz404/graph_visual/assets/58977203/e899b9ff-4876-4771-abc2-32baea77b4d6)
+![graph](https://github.com/Spiz404/graph_visual/assets/58977203/e899b9ff-4876-4771-abc2-32baea77b4d6) \
 In this mode you can:
 - visualize your graph
 - mode nodes around
@@ -33,6 +33,6 @@ No delete confirmation will be asked before removing, pay attention!
 ## Algo result visualize mode
 
 If you click on one of the four algo buttons you may have to follow some steps (eg selecting source node for bfs visit)
-and than you will get in the result visualization state!
+and than you will get in the result visualization state! \
 You an come back to visualize mode by clicking on the esc button.
 
