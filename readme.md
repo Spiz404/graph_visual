@@ -11,8 +11,8 @@ This tool revolves around 4 modes:
 ## Visualize mode
 <p align="center">
   <img width="400" src="https://github.com/Spiz404/graph_visual/assets/58977203/e899b9ff-4876-4771-abc2-32baea77b4d6" alt="visualize mode">
-
 </p>
+
 In this mode you can:
 - visualize your graph
 - mode nodes around
@@ -20,16 +20,17 @@ In this mode you can:
 
 ## Insert mode
 <p align="center">
-![insert-mode](https://github.com/Spiz404/graph_visual/assets/58977203/9d1c31a9-313e-46d4-8538-b15c1e4133d1) 
+  <img width="600" src="https://github.com/Spiz404/graph_visual/assets/58977203/9d1c31a9-313e-46d4-8538-b15c1e4133d1" alt="insert mode">
 </p>
+
 In this mode you can:
 - insert a new node with a left click
 - insert a new edge by right clicking on the source node and then on the destination node
 
 ## Delete mode
-
-![delete-mode](https://github.com/Spiz404/graph_visual/assets/58977203/2b613b99-0ab2-4e98-a9e4-4b547297c70a)
-
+<p align="center">
+  <img src="https://github.com/Spiz404/graph_visual/assets/58977203/2b613b99-0ab2-4e98-a9e4-4b547297c70a" alt="delete mode">
+</p>
 
 In this mode you can delete a node and it's edges by left clicking on it 
 
