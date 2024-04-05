@@ -25,14 +25,12 @@ In this mode you can:
 ## Delete mode
 
 In this mode you can delete a node and it's edges by left clicking on it 
-```
-diff # warning!
-```
-No delete confirmation will be asked before removing, pay attention!
+
+Warning! No delete confirmation will be asked before removing, pay attention!
 
 ## Algo result visualize mode
 
 If you click on one of the four algo buttons you may have to follow some steps (eg selecting source node for bfs visit)
 and than you will get in the result visualization state! \
-You an come back to visualize mode by clicking on the esc button.
+You can come back to visualize mode by clicking on the esc button.
 
