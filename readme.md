@@ -23,7 +23,7 @@ In this mode you can:
 <p align="center">
   <img src="https://github.com/Spiz404/graph_visual/assets/58977203/edd57445-8cb5-457b-ac59-be20d521453a" alt="insert mode">
 </p>
-
+You enter this mode by pressing the i button.
 In this mode you can:
 - insert a new node with a left click
 - insert a new edge by right clicking on the source node and then on the destination node
@@ -32,6 +32,7 @@ In this mode you can:
 <p align="center">
   <img src="https://github.com/Spiz404/graph_visual/assets/58977203/39b6d7b5-7bf9-4722-9b05-ed0eba247ffe" alt="delete mode">
 </p>
+You enter this mode by pressing the d button.
 In this mode you can delete a node and it's edges by left clicking on it 
 
 Warning! No delete confirmation will be asked before removing, pay attention!
